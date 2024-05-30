@@ -1,0 +1,1 @@
+[{"id": 1, "expresion": "16 4 + 2 5 * +", "resultado": "30"},{"id": 2, "expresion": "7 9 - 9 8 / *", "resultado": "incumple reglas"},{"id": 3, "expresion": "7 9 - 9 2 / ^", "resultado": "incumple reglas"},{"id": 4, "expresion": "BRANDON", "resultado": "no se admiten letras"},{"id": 5, "expresion": "LUIS", "resultado": "no se admiten letras"}]

@@ -1,0 +1,38 @@
+{% extends "templateexpresiones.html" %}
+
+{% block content %}
+<div class="content-panel">
+    <h2>Calcular Expresión</h2>
+    <form id="calcular_form" method="POST" action="{{ url_for('calcular_expresion') }}">
+        <div class="form-group">
+            <label for="expresion">Expresión:</label>
+            <input type="text" id="expresion" name="expresion" class="form-control" value="{{ expresion }}" readonly>
+        </div>
+        <button type="submit" class="btn btn-primary">Calcular</button>
+    </form>
+    <div id="resultado_container" style="display: none;">
+        <h3>Resultado:</h3>
+        <p id="resultado"></p>
+    </div>
+</div>
+
+<script>
+    document.getElementById('calcular_form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        var expresion = document.getElementById('expresion').value;
+        fetch('{{ url_for("calcular_expresion") }}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ expresion: expresion })
+        })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('resultado_container').style.display = 'block';
+                document.getElementById('resultado').innerText = data.resultado;
+            })
+            .catch(error => console.error('Error:', error));
+    });
+</script>
+{% endblock %}
